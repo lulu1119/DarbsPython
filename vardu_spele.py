@@ -1,5 +1,6 @@
 import random
 import time
+from colorama import Fore, Style
 
 def choose_slepenais_vards():
     #Funkcija, lai izvēlētos gadījuma vārdu no saraksta.
@@ -21,32 +22,32 @@ def main():
     iespejamie_vardi = ['apple', 'banana', 'orange', 'grape', 'pineapple', 'strawberry', 'blueberry', 'watermelon']
     laika_limits = 30  # Laika ierobežojums sekundēs
     start_laiks = time.time()
-    
+
     while True:
         minejums = input("Ievadiet savu minējumu: ").lower()
-        
+
         if minejums == 'beigt':
-            print("⛔ Spēle pārtraukta⛔")
+            print(Fore.RED + "⛔ Spēle pārtraukta⛔" + Style.RESET_ALL)
             break
-        
+
         if not minejums.isalpha():
-            print("❗Lūdzu, ievadiet tikai burtus vai izmantojiet 'beigt', lai pārtrauktu spēli.❗")
+            print(Fore.YELLOW + "❗Lūdzu, ievadiet tikai burtus vai izmantojiet 'beigt', lai pārtrauktu spēli.❗" + Style.RESET_ALL)
             continue
 
         if minejums not in iespejamie_vardi:
             print("🤔 Šāds vārds nepastāv.")
             continue
-        
+
         meginajums += 1
         pareizas_pozicijas, pareizi_burti = check_minejums(slepenais_vards, minejums)
-        
+
         print("✅ Pareizi uzminētie burti un to pozīcijas:", pareizas_pozicijas)
         print("✅ Pareizi uzminētie burti, bet ❌ nepareizās pozīcijās:", pareizi_burti)
-        
+
         if pareizas_pozicijas == len(slepenais_vards):
-            print("🏆 Apsveicam! Jūs uzminējāt vārdu ar", meginajums, "mēģinājumiem!🏆")
+            print(Fore.MAGENTA + "🏆 Apsveicam! Jūs uzminējāt vārdu ar", meginajums, "mēģinājumiem!🏆" + Style.RESET_ALL)
             break
-        
+
         elapsed_time = time.time() - start_laiks
         atlikusais_laiks = laika_limits - elapsed_time
         if atlikusais_laiks <= 0:
