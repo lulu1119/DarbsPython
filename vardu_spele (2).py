@@ -20,7 +20,7 @@ def check_minejums(slepenais_vards, minejums):
 
 def main():
     if not colorama_installed:
-        print("Lai šī programma darbotos pareizi, jums jāielādē Colorama. To varat ielādēt, izmantojot komandu 'pip install colorama' (bez pēdiņām).")
+        print("Lai šī programma darbotos pareizi, jums jāielādē colorama. To varat ielādēt, izmantojot komandu 'pip install colorama' (bez pēdiņām).")
         return
 
     print(Back.LIGHTBLUE_EX + Fore.BLACK + "Sveiki! Esam izvēlējušies slepeno vārdu. Mēģiniet to uzminēt!" + Style.RESET_ALL)
