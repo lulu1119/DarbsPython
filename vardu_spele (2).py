@@ -3,12 +3,16 @@ import time
 
 try:
     import colorama  # Mēģina importēt colorama moduli
-    from colorama import Fore, Back, Style # Importē dažas no colorama funkcijām
-    colorama.init() # Inicializē colorama, lai nodrošinātu krāsu atbalstu terminālī
-    colorama_installed = True # Uzstāda mainīgo, kas norāda, ka colorama ir veiksmīgi instalēts
+    from colorama import Fore, Back, Style  # Importē dažas no colorama funkcijām
+    colorama.init()  # Inicializē colorama, lai nodrošinātu krāsu atbalstu terminālī
+    colorama_installed = True  # Uzstāda mainīgo, kas norāda, ka colorama ir veiksmīgi instalēts
 except ImportError:
-    # Ja importēt colorama moduli neizdodas (piemēram, ja modulis nav instalēts), tad:
-    colorama_installed = False # Uzstāda mainīgo, kas norāda, ka colorama nav pieejams
+    colorama_installed = False  # Uzstāda mainīgo, kas norāda, ka colorama nav pieejams
+
+# Pārbauda, vai colorama ir instalēts
+if not colorama_installed:
+    print("❗Lai šī spēle darbotos, jums jāaugšupielādē colorama. To varat izdarīt, ievadot terminālī 'pip install colorama' (bez pēdiņām) un nospiežot ENTER.")
+    exit()
 
 # Funkcija, kas izvēlas gadījuma slepeno vārdu no saraksta
 def choose_slepenais_vards():
@@ -23,11 +27,6 @@ def check_minejums(slepenais_vards, minejums):
 
 # Galvenā funkcija
 def main():
-    # Pārbauda, vai colorama ir instalēts
-    if not colorama_installed:
-        print("❗Lai šī spēle darbotos, jums jāaugšupielādē colorama. To varat izdarīt, ievadot terminālī 'pip install colorama' (bez pēdiņām) un nospiežot ENTER.")
-        return
-
     # Sākuma ziņojums
     print(Back.LIGHTBLUE_EX + Fore.BLACK + "Sveiki! Esam izvēlējušies slepeno vārdu. Mēģiniet to uzminēt!" + Style.RESET_ALL)
     print(Back.LIGHTBLUE_EX + Fore.BLACK + "Ja vēlaties spēli pārtraukt, rakstiet 'beigt'!" + Style.RESET_ALL)
