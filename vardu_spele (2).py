@@ -1,29 +1,32 @@
 import random
 import time
-import colorama
+
 try:
+    import colorama
     from colorama import Fore, Back, Style
+    colorama.init()
     colorama_installed = True
 except ImportError:
     colorama_installed = False
 
-colorama.init()
-
 def choose_slepenais_vards():
-    #Funkcija, lai izvēlētos gadījuma vārdu no saraksta.
     vardi = ['apple', 'banana', 'orange', 'grape', 'pineapple', 'strawberry', 'blueberry', 'watermelon']
     return random.choice(vardi)
 
 def check_minejums(slepenais_vards, minejums):
-    #Funkcija, lai pārbaudītu lietotāja minējumu.
     pareizas_pozicijas = sum(a == b for a, b in zip(slepenais_vards, minejums))
     pareizi_burti = sum(min(slepenais_vards.count(letter), minejums.count(letter)) for letter in set(minejums))
     return pareizas_pozicijas, pareizi_burti - pareizas_pozicijas
 
 def main():
-    print(Back.LIGHTBLUE_EX + Fore.BLACK + "Sveiki! Esam izvēlējušies slepeno vārdu. Mēģiniet to uzminēt!" + Style.RESET_ALL )
-    print(Back.LIGHTBLUE_EX  + Fore.BLACK + "Ja vēlaties spēli pārtraukt, rakstiet 'beigt'!" + Style.RESET_ALL)
+    if not colorama_installed:
+        print("Lai šī programma darbotos pareizi, jums jāielādē Colorama. To varat ielādēt, izmantojot komandu 'pip install colorama' (bez pēdiņām).")
+        return
+
+    print(Back.LIGHTBLUE_EX + Fore.BLACK + "Sveiki! Esam izvēlējušies slepeno vārdu. Mēģiniet to uzminēt!" + Style.RESET_ALL)
+    print(Back.LIGHTBLUE_EX + Fore.BLACK + "Ja vēlaties spēli pārtraukt, rakstiet 'beigt'!" + Style.RESET_ALL)
     print(Back.LIGHTMAGENTA_EX + Fore.BLACK + "Iespējamie vārdi: apple, banana, orange, grape, pineapple, strawberry, blueberry, watermelon." + Style.RESET_ALL)
+    
     slepenais_vards = choose_slepenais_vards()
     meginajums = 0
     iespejamie_vardi = ['apple', 'banana', 'orange', 'grape', 'pineapple', 'strawberry', 'blueberry', 'watermelon']
@@ -53,7 +56,6 @@ def main():
             else:
                 print("🕑 Atlikušais laiks:", int(atlikusais_laiks), "sekundes🕑")
             continue
-
 
         meginajums += 1
         pareizas_pozicijas, pareizi_burti = check_minejums(slepenais_vards, minejums)
